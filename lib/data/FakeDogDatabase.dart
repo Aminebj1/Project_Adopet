@@ -5,7 +5,7 @@ import '../models/owner.dart';
 Owner owner = Owner(
   name: "Spikey Sanju",
   bio: "Developer & Pet Lover",
-  imageUrl: "assets/drawable-v24/owner.png",  // Corrected image path
+  imageUrl: "lib/assets/drawable-v24/owner.png",  // Corrected image path
 );
 
 // Corrected dog list with proper asset paths and named constructor parameters
@@ -18,7 +18,7 @@ List<Dog> dogList = [
     color: "Brown",
     weight: 12.9,
     distance: "389m away",
-    imageUrl: "assets/drawable/orange_dog.png",  // Corrected asset path
+    imageUrl: "lib/assets/drawable/orange_dog.png",  // Corrected asset path
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     owner: owner,  // Correctly passed the owner object
   ),
@@ -30,7 +30,7 @@ List<Dog> dogList = [
     color: "Gold",
     weight: 12.4,
     distance: "412m away",
-    imageUrl: "assets/drawable/blue_dog.png",  // Corrected asset path
+    imageUrl: "lib/assets/drawable/blue_dog.png",  // Corrected asset path
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     owner: owner,
   ),
@@ -42,7 +42,7 @@ List<Dog> dogList = [
     color: "White",
     weight: 9.6,
     distance: "879m away",
-    imageUrl: "assets/drawable/red_dog.png",  // Corrected asset path
+    imageUrl: "lib/assets/drawable/red_dog.png",  // Corrected asset path
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     owner: owner,
   ),
@@ -54,7 +54,7 @@ List<Dog> dogList = [
     color: "Black",
     weight: 8.2,
     distance: "672m away",
-    imageUrl: "assets/drawable/yellow_dog.png",  // Corrected asset path
+    imageUrl: "lib/assets/drawable/yellow_dog.png",  // Corrected asset path
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     owner: owner,
   ),
@@ -66,7 +66,7 @@ List<Dog> dogList = [
     color: "Choco",
     weight: 14.9,
     distance: "982m away",
-    imageUrl: "assets/drawable/white_dog.png",  // Corrected asset path
+    imageUrl: "lib/assets/drawable/white_dog.png",  // Corrected asset path
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     owner: owner,
   ),

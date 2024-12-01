@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/bin/cmake --regenerate-during-build -S/home/bejaoui-mohamed-amine/Téléchargements/melek/Flutter-Project/linux -B/home/bejaoui-mohamed-amine/Téléchargements/melek/Flutter-Project/build/linux/x64/debug
+  command = /usr/bin/cmake --regenerate-during-build -S/home/bejaoui-mohamed-amine/Amine/Project_Adopet/linux -B/home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug
   description = Re-running CMake...
   generator = 1
 

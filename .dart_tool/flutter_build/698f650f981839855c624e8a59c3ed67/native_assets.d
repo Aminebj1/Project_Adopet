@@ -1,0 +1,1 @@
+ /home/bejaoui-mohamed-amine/Amine/Project_Adopet/.dart_tool/flutter_build/698f650f981839855c624e8a59c3ed67/native_assets.yaml: 

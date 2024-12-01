@@ -70,6 +70,10 @@ flutter:
     - lib/assets/drawable/red_dog.png
     - lib/assets/drawable/yellow_dog.png
     - lib/assets/drawable/white_dog.png
+    - lib/assets/drawable/orange_dog.png
+    - lib/assets/drawable/wiggle_logo.png
+    - lib/assets/drawable/yellow_dog.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
