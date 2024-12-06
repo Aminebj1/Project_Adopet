@@ -1,14 +1,12 @@
 import '../models/dog.dart';
 import '../models/owner.dart';
 
-// Correctly creating the Owner object with named parameters
 Owner owner = Owner(
   name: "Spikey Sanju",
   bio: "Developer & Pet Lover",
   imageUrl: "lib/assets/drawable-v24/owner.png",  // Corrected image path
 );
 
-// Corrected dog list with proper asset paths and named constructor parameters
 List<Dog> dogList = [
   Dog(
     id: 0,
@@ -18,9 +16,9 @@ List<Dog> dogList = [
     color: "Brown",
     weight: 12.9,
     distance: "389m away",
-    imageUrl: "lib/assets/drawable/orange_dog.png",  // Corrected asset path
+    imageUrl: "lib/assets/drawable/orange_dog.png",  
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
-    owner: owner,  // Correctly passed the owner object
+    owner: owner,  
   ),
   Dog(
     id: 1,

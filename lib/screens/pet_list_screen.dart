@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
 import '../models/dog.dart';
-import '../data/FakeDogDatabase.dart';
+import '../service/api_service.dart'; // Assurez-vous que l'import est correct
 import 'pet_detail_screen.dart';
 
-class PetListScreen extends StatelessWidget {
+class PetListScreen extends StatefulWidget {
+  @override
+  _PetListScreenState createState() => _PetListScreenState();
+}
+
+class _PetListScreenState extends State<PetListScreen> {
+  late Future<List<Dog>> futureDogs;
+
+  @override
+  void initState() {
+    super.initState();
+    futureDogs = ApiService().fetchDogs(); // Récupérer les chiens au démarrage de l'écran
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,96 +24,55 @@ class PetListScreen extends StatelessWidget {
         title: const Text('Available Dogs'),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        itemCount: dogList.length,
-        itemBuilder: (context, index) {
-          final dog = dogList[index];
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: ListTile(
-              contentPadding: const EdgeInsets.all(16),
-              leading: CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage(dog.imageUrl),
-              ),
-              title: Text(
-                dog.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 4),
-                  Text(
-                    '${dog.age} yrs | ${dog.gender}',
-                    style: const TextStyle(fontSize: 14),
+      body: FutureBuilder<List<Dog>>(
+        future: futureDogs,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Failed to load dogs: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No dogs available.'));
+          } else {
+            final dogs = snapshot.data!;
+            return ListView.builder(
+              itemCount: dogs.length,
+              itemBuilder: (context, index) {
+                final dog = dogs[index];
+                return Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  const SizedBox(height: 4),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(Icons.location_on, size: 16, color: Colors.grey),
-                      const SizedBox(width: 4),
-                      Text(
-                        '${dog.distance}m away',
-                        style: const TextStyle(color: Colors.grey),
-                      ),
-                      const SizedBox(width: 16),
-                      const Icon(Icons.access_time, size: 16, color: Colors.grey),
-                      const SizedBox(width: 4),
-                      Text(
-                        '12 min ago',
-                        style: const TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              trailing: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: 120, // Limit width to prevent overflow
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: dog.gender == 'Male' ? Colors.blue[100] : Colors.pink[100],
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        dog.gender,
-                        style: TextStyle(
-                          color: dog.gender == 'Male' ? Colors.blue : Colors.pink,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(16),
+                    leading: CircleAvatar(
+                      radius: 30,
+                      backgroundImage: NetworkImage(dog.imageUrl), // Affichage de l'image depuis l'URL
+                    ),
+                    title: Text(
+                      dog.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
-                  ],
-                ),
-              ),
-              onTap: () {
-                // Navigate to the Pet Detail Screen with the selected dog
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PetDetailScreen(dog: dog),
+                    subtitle: Text('${dog.age} years old | ${dog.gender}'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PetDetailScreen(dog: dog),
+                        ),
+                      );
+                    },
                   ),
                 );
               },
-            ),
-          );
+            );
+          }
         },
       ),
     );
   }
 }
-
-

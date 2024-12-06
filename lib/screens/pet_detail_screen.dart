@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/dog.dart';
+import '../screens/custom_appbar.dart'; // Importez le widget personnalisé
 
 class PetDetailScreen extends StatelessWidget {
   final Dog dog;
@@ -9,17 +10,8 @@ class PetDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dog Details'),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        titleTextStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      appBar: CustomAppBar(title: 'Available Dogs'), // Utilisation du widget
+     
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

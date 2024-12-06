@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^1.2.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -73,6 +74,7 @@ flutter:
     - lib/assets/drawable/orange_dog.png
     - lib/assets/drawable/wiggle_logo.png
     - lib/assets/drawable/yellow_dog.png
+    - lib/assets/drawable-v24/owner.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

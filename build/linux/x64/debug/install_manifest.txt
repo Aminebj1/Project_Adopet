@@ -18,4 +18,5 @@
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/lib/assets/images/dog2.png
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/lib/assets/images/owner.png
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/lib/assets/images/dog1.png
+/home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/lib/assets/drawable-v24/owner.png
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/version.json
