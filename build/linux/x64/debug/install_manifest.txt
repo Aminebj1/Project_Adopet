@@ -1,6 +1,7 @@
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/flutter_project
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/icudtl.dat
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/lib/libflutter_linux_gtk.so
+/home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/lib/libfile_selector_linux_plugin.so
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/FontManifest.json

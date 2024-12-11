@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/dog.dart';
 import '../service/api_service.dart'; // Assurez-vous que l'import est correct
 import 'pet_detail_screen.dart';
+import 'AddDogScreen.dart';
 
 class PetListScreen extends StatefulWidget {
   @override
@@ -48,7 +49,7 @@ class _PetListScreenState extends State<PetListScreen> {
                     contentPadding: const EdgeInsets.all(16),
                     leading: CircleAvatar(
                       radius: 30,
-                      backgroundImage: NetworkImage(dog.imageUrl), // Affichage de l'image depuis l'URL
+                      backgroundImage: NetworkImage(dog.imageUrl),
                     ),
                     title: Text(
                       dog.name,
@@ -58,6 +59,18 @@ class _PetListScreenState extends State<PetListScreen> {
                       ),
                     ),
                     subtitle: Text('${dog.age} years old | ${dog.gender}'),
+         trailing: IconButton(
+  icon: Icon(Icons.delete, color: Colors.red),
+  onPressed: () {
+    final dogId = dog.id.toString(); // Convert the dog ID to string if necessary
+    print('Deleting dog with ID: $dogId'); // Print to verify the ID
+    _confirmDelete(context, dogId);  // Ensure dogId is passed correctly to _confirmDelete
+  },
+)
+),
+
+
+
                     onTap: () {
                       Navigator.push(
                         context,
@@ -73,6 +86,65 @@ class _PetListScreenState extends State<PetListScreen> {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddDogScreen(onDogAdded: _refreshDogs),
+            ),
+          );
+        },
+        child: Icon(Icons.add),
+      ),
     );
+  }
+
+  // Méthode pour confirmer et supprimer un chien
+  // Method to confirm and delete a dog
+void _confirmDelete(BuildContext context, String dogId) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text('Delete Dog'),
+        content: Text('Are you sure you want to delete this dog?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Close the dialog without deleting
+            },
+            child: Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              _deleteDog(dogId); // Delete the dog
+              Navigator.pop(context); // Close the dialog after deletion
+            },
+            child: Text('Delete'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+  // Méthode pour supprimer un chien
+  Future<void> _deleteDog(String dogId) async {
+    try {
+      await ApiService().deleteDog(dogId); // Appelez votre API pour supprimer le chien
+      _refreshDogs(); // Rafraîchir la liste des chiens après suppression
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to delete dog: $e')),
+      );
+    }
+  }
+
+  // Méthode pour rafraîchir la liste des chiens après ajout
+  void _refreshDogs() {
+    setState(() {
+      futureDogs = ApiService().fetchDogs();
+    });
   }
 }

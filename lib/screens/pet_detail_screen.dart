@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/dog.dart';
-import '../screens/custom_appbar.dart'; // Importez le widget personnalisé
+import 'EditDogScreen.dart';
 
 class PetDetailScreen extends StatelessWidget {
   final Dog dog;
@@ -10,8 +10,9 @@ class PetDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Available Dogs'), // Utilisation du widget
-     
+      appBar: AppBar(
+        title: const Text('Available Dogs'), // Titre de l'AppBar
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,6 +34,7 @@ class PetDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Ligne contenant le nom du chien et l'icône d'édition
                   Row(
                     children: [
                       Expanded(
@@ -44,22 +46,21 @@ class PetDetailScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: dog.gender == "Male"
-                              ? Colors.blue.shade100
-                              : Colors.pink.shade100,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text(
-                          dog.gender,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                      IconButton(
+                        icon: const Icon(Icons.edit),
+                        onPressed: () async {
+                          // Naviguer vers la page d'édition et obtenir les informations mises à jour
+                          final updatedDog = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EditDogScreen(dog: dog),
+                            ),
+                          );
+                          // Si l'utilisateur a modifié les informations, mettre à jour l'écran
+                          if (updatedDog != null) {
+                            // Mettre à jour l'affichage avec le nouveau chien modifié (cela se fait automatiquement ici)
+                          }
+                        },
                       ),
                     ],
                   ),
