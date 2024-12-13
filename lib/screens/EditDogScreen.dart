@@ -24,6 +24,8 @@ class _EditDogScreenState extends State<EditDogScreen> {
   late String _imageUrl;
   late String _description;
 
+  late Dog _updatedDog;  // Add this line to store the updated dog locally
+
   @override
   void initState() {
     super.initState();
@@ -36,11 +38,11 @@ class _EditDogScreenState extends State<EditDogScreen> {
     _distance = widget.dog.distance;
     _imageUrl = widget.dog.imageUrl;
     _description = widget.dog.description;
+
+    _updatedDog = widget.dog;  // Initialize the local dog state
   }
-
-
-  Future<void> updateDog(Dog dog) async {
-  final url = 'http://192.168.100.197:5000/api/dogs/${dog.id}'; // Replace with your actual URL
+Future<void> updateDog(Dog dog) async {
+  final url = 'http://192.168.100.197:5000/api/dogs/${dog.id}';
 
   try {
     final response = await http.put(
@@ -49,20 +51,26 @@ class _EditDogScreenState extends State<EditDogScreen> {
       body: json.encode(dog.toJson()),
     );
 
-    // Check if the response status code is not 200
-    if (response.statusCode != 200) {
-      print('Failed to update dog. Status code: ${response.statusCode}');
-      print('Response body: ${response.body}');
-      throw Exception('Failed to update dog');
-    } else {
+    if (response.statusCode == 200) {
       print('Dog updated successfully');
+      Dog updatedDog = Dog.fromJson(json.decode(response.body));
+
+      // Utiliser setState pour mettre à jour l'UI
+      setState(() {
+        _updatedDog = updatedDog;
+      });
+
+      // Vous pouvez aussi utiliser un FutureBuilder dans la page principale
+      Navigator.pop(context, updatedDog); // Retour à la page précédente
+    } else {
+      print('Failed to update dog. Status code: ${response.statusCode}');
+      throw Exception('Failed to update dog');
     }
   } catch (error) {
     print('Error updating dog: $error');
     throw Exception('Failed to update dog');
   }
 }
-
 
   @override
   Widget build(BuildContext context) {
@@ -164,29 +172,26 @@ class _EditDogScreenState extends State<EditDogScreen> {
                 },
               ),
               const SizedBox(height: 20),
-             ElevatedButton(
-  onPressed: () {
-    if (_formKey.currentState?.validate() ?? false) {
-      // Update dog with the provided data, ensure the id is passed from the existing dog
-      updateDog(Dog(
-        id: widget.dog.id, // Use the id of the current dog object
-        name: _name,
-        age: _age,
-        gender: _gender,
-        color: _color,
-        weight: _weight,
-        distance: _distance,
-        imageUrl: _imageUrl,
-        description: _description,
-        owner: widget.dog.owner, // The owner is being passed from the existing dog
-      ));
-      Navigator.pop(context); // Go back to the previous screen
-    }
-  },
-  child: const Text('Save Changes'),
-)
-
-               
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    // Update the dog with the new values
+                    updateDog(Dog(
+                      id: widget.dog.id,
+                      name: _name,
+                      age: _age,
+                      gender: _gender,
+                      color: _color,
+                      weight: _weight,
+                      distance: _distance,
+                      imageUrl: _imageUrl,
+                      description: _description,
+                      owner: widget.dog.owner,
+                    ));
+                  }
+                },
+                child: const Text('Save Changes'),
+              ),
             ],
           ),
         ),

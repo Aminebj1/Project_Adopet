@@ -59,14 +59,13 @@ class _PetListScreenState extends State<PetListScreen> {
                       ),
                     ),
                     subtitle: Text('${dog.age} years old | ${dog.gender}'),
-         trailing: IconButton(
+          trailing: IconButton(
   icon: Icon(Icons.delete, color: Colors.red),
   onPressed: () {
-    final dogId = dog.id.toString(); // Convert the dog ID to string if necessary
-    print('Deleting dog with ID: $dogId'); // Print to verify the ID
-    _confirmDelete(context, dogId);  // Ensure dogId is passed correctly to _confirmDelete
+    final dogId = dog.id.toString(); // Convertissez en String si nécessaire
+    print('Deleting dog with ID: $dogId'); // Ajoutez un print pour vérifier l'ID
+    _confirmDelete(context, dogId);
   },
-)
 ),
 
 

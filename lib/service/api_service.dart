@@ -40,17 +40,8 @@ class ApiService {
       throw Exception('Failed to add dog: ${response.body}');
     }
   }
-  Future<void> updateDog(Dog dog) async {
-    final response = await http.put(
-      Uri.parse('$baseUrl/dogs/${dog.id}'),
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode(dog.toJson()),
-    );
+ 
 
-    if (response.statusCode != 200) {
-      throw Exception('Failed to update dog');
-    }
-  }
 bool isValidObjectId(String id) {
   // Check if the ID is a valid ObjectId (24-character hexadecimal string)
   final objectIdPattern = RegExp(r'^[a-fA-F0-9]{24}$');

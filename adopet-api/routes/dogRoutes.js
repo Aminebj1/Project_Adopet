@@ -26,20 +26,28 @@ router.get('/dogs', async (req, res) => {
   }
 });
 
-
 router.put('/dogs/:id', async (req, res) => {
   const { id } = req.params;
   const { name, age, gender, color, weight, distance, imageUrl, description, owner } = req.body;
 
+  console.log('ID:', id); // Vérification de l'ID
+  console.log('Received Data:', req.body); // Vérification des données reçues
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'Invalid ID format' });
+  }
+
   try {
     const updatedDog = await Dog.findByIdAndUpdate(id, { name, age, gender, color, weight, distance, imageUrl, description, owner }, { new: true });
-    if (!updatedDog) return res.status(404).json({ message: 'Dog not found' });
+    if (!updatedDog) {
+      return res.status(404).json({ message: 'Dog not found' });
+    }
     res.status(200).json(updatedDog);
   } catch (error) {
+    console.error('Error:', error); // Affiche l'erreur dans les logs
     res.status(400).json({ error: error.message });
   }
 });
-
 
 // DELETE a dog by ID
 router.delete('/dogs/:id', async (req, res) => {
