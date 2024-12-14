@@ -47,16 +47,18 @@ class _PetListScreenState extends State<PetListScreen> {
                   ),
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(16),
-                    leading: CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage(dog.imageUrl),
-                    ),
+                  leading: CircleAvatar(
+                  radius: 30,
+                    backgroundImage: dog.imageUrl.isNotEmpty
+                      ? AssetImage('${dog.imageUrl}')  // Assurez-vous que dog.imageUrl contient seulement le nom de l'image
+                      : AssetImage('assets/images/default_dog.png'), // Image par défaut si aucune image n'est fournie
+                  ),
                     title: Text(
-                      dog.name,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                    dog.name,
+                    style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    ),
                     ),
                     subtitle: Text('${dog.age} years old | ${dog.gender}'),
           trailing: IconButton(
@@ -67,9 +69,6 @@ class _PetListScreenState extends State<PetListScreen> {
     _confirmDelete(context, dogId);
   },
 ),
-
-
-
                     onTap: () {
                       Navigator.push(
                         context,
@@ -128,7 +127,7 @@ void _confirmDelete(BuildContext context, String dogId) {
   );
 }
 
-  // Méthode pour supprimer un chien
+  
   Future<void> _deleteDog(String dogId) async {
     try {
       await ApiService().deleteDog(dogId); // Appelez votre API pour supprimer le chien

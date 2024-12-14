@@ -38,7 +38,6 @@ class _EditDogScreenState extends State<EditDogScreen> {
     _distance = widget.dog.distance;
     _imageUrl = widget.dog.imageUrl;
     _description = widget.dog.description;
-
     _updatedDog = widget.dog;  // Initialize the local dog state
   }
 Future<void> updateDog(Dog dog) async {
