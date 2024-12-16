@@ -8,33 +8,42 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-  
-      centerTitle: false,
+      backgroundColor: Colors.blueAccent, // Couleur de fond personnalisée
+      elevation: 4.0, // Légère ombre sous l'AppBar
+      title: Text(
+        title, 
+        style: TextStyle(
+          fontSize: 20.0, 
+          fontWeight: FontWeight.bold,
+          color: Colors.white, // Couleur du texte
+        ),
+      ),
+      centerTitle: true, // Centrer le titre
       actions: [
-        // Image circulaire pour le propriétaire
         Padding(
-          padding: const EdgeInsets.only(right: 10.0),
+          padding: const EdgeInsets.only(right: 15.0),
           child: GestureDetector(
             onTap: () {
               print('Profile clicked');
             },
             child: CircleAvatar(
               backgroundImage: AssetImage('lib/assets/drawable-v24/owner.png'),
-              radius: 20,
+              radius: 22.0,
             ),
           ),
         ),
-        // Icône de déconnexion
         IconButton(
           icon: const Icon(Icons.logout),
           onPressed: () {
             print('Logout clicked');
           },
+          color: Colors.white, // Icône blanche pour une meilleure lisibilité
         ),
+        const SizedBox(width: 10), // Ajouter un peu d'espace entre les éléments
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight); // Taille de l'AppBar
 }

@@ -3,7 +3,7 @@ import '../models/dog.dart';
 import '../service/api_service.dart'; // Assurez-vous que l'import est correct
 import 'pet_detail_screen.dart';
 import 'AddDogScreen.dart';
-
+import 'custom_appbar.dart';
 class PetListScreen extends StatefulWidget {
   @override
   _PetListScreenState createState() => _PetListScreenState();
@@ -21,10 +21,7 @@ class _PetListScreenState extends State<PetListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Available Dogs'),
-        centerTitle: true,
-      ),
+      appBar: CustomAppBar(title: 'Pet List'), // Utilisation de l'AppBar personnalisée
       body: FutureBuilder<List<Dog>>(
         future: futureDogs,
         builder: (context, snapshot) {
@@ -41,7 +38,7 @@ class _PetListScreenState extends State<PetListScreen> {
               itemBuilder: (context, index) {
                 final dog = dogs[index];
                 return Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),

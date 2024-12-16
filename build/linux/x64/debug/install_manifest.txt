@@ -5,10 +5,12 @@
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/FontManifest.json
+/home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin.json
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/shaders/ink_sparkle.frag
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.json
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin
+/home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES.Z
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/lib/assets/drawable/yellow_dog.png
 /home/bejaoui-mohamed-amine/Amine/Project_Adopet/build/linux/x64/debug/bundle/data/flutter_assets/lib/assets/drawable/white_dog.png
